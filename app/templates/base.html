@@ -63,61 +63,73 @@
 
             <div class="modal-header">
                 <img src="{{ url_for('static', filename='uploads/profile.jpg') }}" alt="Pardeep Singh"
-                    onerror="this.src='https://ui-avatars.com/api/?name=Pardeep+Singh&size=80&background=3498db&color=fff'">
+                    onerror="this.src='https://ui-avatars.com/api/?name=Pardeep+Singh&size=100&background=3498db&color=fff'">
                 <div>
                     <h2>Pardeep Singh</h2>
-                    <p class="creator-title">Open Source Contributor | Learner | Developer</p>
+                    <p class="creator-title">Full Stack Explorer | Open Source | Student</p>
                 </div>
             </div>
 
             <div class="modal-body">
-                <p class="greeting">Yo 🦥</p>
-                <p class="bio">
-                    I'm a Python developer and aspiring entrepreneur on a mission to
-                    learn by building. This project is my playground for exploring
-                    Flask, databases, and real-world web development.
-                </p>
+                <div class="modal-grid">
+                    <div class="bio-section">
+                        <p class="greeting">Yo! 🦥</p>
+                        <p class="bio">
+                            I'm a Python developer on a mission to learn by building. This store is my latest project,
+                            built to explore Flask, databases, and how to create smooth shopping experiences.
+                        </p>
 
-                <div class="tech-stack">
-                    <h4>🛠️ Tech Stack</h4>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Flask</span>
-                        <span class="tech-badge">SQLAlchemy</span>
-                        <span class="tech-badge">HTML/CSS</span>
-                        <span class="tech-badge">JavaScript</span>
+                        <div class="about-section" style="margin-top: 20px;">
+                            <h4>🎯 Current Mission</h4>
+                            <p class="project-info">
+                                Transforming my passion for Anime & Stationery into a digital experience. Currently
+                                focusing on making this store as fast and user-friendly as possible!
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="about-section">
-                    <h4>🎯 What I'm About</h4>
-                    <ul class="about-list">
-                        <li>Fueled by curiosity and coffee</li>
-                    </ul>
-                </div>
+                    <div class="skills-sidebar">
+                        <div class="tech-stack">
+                            <h4>🛠️ Tech Stack</h4>
 
-                <div class="about-section">
-                    <h4>💡 What's this Project?</h4>
-                    <p class="project-info">
-                        A sleek Flask-powered mini store for my Instagram stationery page — featuring smooth product
-                        handling, clean UI, and a lightweight stack (Flask, SQLAlchemy, Jinja2, CSS).
-                    </p>
-                </div>
+                            <div class="tech-category">
+                                <p class="tech-category-title">Backend</p>
+                                <div class="tech-badges">
+                                    <span class="tech-badge badge-python">Python</span>
+                                    <span class="tech-badge badge-flask">Flask</span>
+                                    <span class="tech-badge badge-db">SQLAlchemy</span>
+                                </div>
+                            </div>
 
-                <div class="social-links">
-                    <h4>📬 Let's Connect</h4>
-                    <div class="social-buttons">
-                        <a href="https://github.com/blu3-bird" class="social-btn github" target="_blank">
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://instagram.com/blu3_bird_" class="social-btn instagram" target="_blank">
-                            <span>Instagram</span>
-                        </a>
+                            <div class="tech-category">
+                                <p class="tech-category-title">Frontend</p>
+                                <div class="tech-badges">
+                                    <span class="tech-badge badge-frontend">HTML/CSS</span>
+                                    <span class="tech-badge badge-js">JS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h4>📬 Let's Connect</h4>
+                            <div class="social-buttons">
+                                <a href="https://github.com/blu3-bird" class="social-btn github" target="_blank">
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="{{ instagram_url }}" class="social-btn instagram" target="_blank">
+                                    <span>Instagram</span>
+                                </a>
+                                <button onclick="copyEmail(this)" class="social-btn email-btn">
+                                    <span>Copy Email</span>
+                                    <div class="copy-success">Copied!</div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <p class="footer-quote">
-                    "Priate's Dreams.. have no end!" 🚀
+                    "Pirate's Dreams.. have no end!" 🚀
                 </p>
             </div>
         </div>
@@ -178,11 +190,24 @@
         document.getElementById('aboutLink').addEventListener('click', function (e) {
             e.preventDefault();
             document.getElementById('aboutModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
         });
 
         // Close Modal
         function closeModal() {
             document.getElementById('aboutModal').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Copy Email Function
+        function copyEmail(btn) {
+            const email = "pardeep@example.com"; // Replace with your actual email
+            navigator.clipboard.writeText(email).then(() => {
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
         }
 
         // Close modal when clicking outside
